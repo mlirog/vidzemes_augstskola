@@ -1,0 +1,6 @@
+{
+  "helloWorld": "Sveika pasaule!",
+  "@helloWorld": {
+    "description": "Sis ir tests"
+  }
+}
