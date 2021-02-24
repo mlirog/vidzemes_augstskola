@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:vidzemes_augstskola/lecture_graph/course_selection/CourseSelectionStepper.dart';
 import 'package:vidzemes_augstskola/lecture_graph/objects/Lecture.dart';
 import 'package:http/http.dart' as http;
@@ -29,9 +30,15 @@ class _MyLecturesGraphState extends State<Lecture_graph> {
 
   @override
   void initState() {
+    super.initState();
     _selectedDate = new DateTime.now();
     _future = downloadData();
-    super.initState();
+
+    //allow only portrait views
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 
   @override

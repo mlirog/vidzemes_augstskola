@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -57,6 +56,8 @@ class _WebVieweState extends State<WebViewPage> {
                 request.url.contains('www.facebook.com') ||
                 request.url.contains('www.youtube.com') ||
                 request.url.contains('www.instagram.com') ||
+                request.url.contains('va.webex.com') ||
+                request.url.startsWith('wbx:') ||
                 request.url.startsWith('tel:') ||
                 request.url.startsWith('mailto:')){
               _launchURL(request.url);

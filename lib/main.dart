@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import 'menu_screen/MenuScreenState.dart';
@@ -12,6 +13,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,5 +30,4 @@ class MyHomePage extends StatefulWidget {
 
   @override
   MenuScreenState createState() => MenuScreenState();
-  // _MyHomePageState createState() => _MyHomePageState();
 }

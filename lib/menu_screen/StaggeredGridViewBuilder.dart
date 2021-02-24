@@ -5,6 +5,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:vidzemes_augstskola/lecture_graph/lecture_graph/Lecture_graph.dart';
 import 'package:vidzemes_augstskola/webview/WebViewPage.dart';
 
+bool _isLoading = true;
+
 Widget StaggeredGridViewBuilder(
     BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
   return new StaggeredGridView.count(
@@ -51,6 +53,16 @@ Widget StaggeredGridViewBuilder(
                   child: Image.network(
                     document['icon_url'],
                     width: 40,
+                    loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent loadingProgress) {
+                      //if loading is finished
+                      if (loadingProgress == null){
+                        //return image
+                        return child;
+                      } else {
+                        //show loading
+                        return CircularProgressIndicator();
+                      }
+                    },
                   ),
                 ),
               ),

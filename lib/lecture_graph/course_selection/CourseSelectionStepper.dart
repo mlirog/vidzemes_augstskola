@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vidzemes_augstskola/assets/ViAColors.dart';
@@ -27,6 +28,7 @@ class CourseSelectionState extends State<CourseSelectionPage>{
   double _currentSliderValue = 1;
   Future<List<Course>> _future;
   Future<SharedPreferences> prefs;
+  FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
 
   go(int step) {
     setState(() => _currentstep += step);
@@ -34,6 +36,8 @@ class CourseSelectionState extends State<CourseSelectionPage>{
     if (nonYearCourses.contains(courses[selectedCourse].abbreviation) &&
         _currentstep == 1)
       openLectureGraphScreen(courses[selectedCourse].abbreviation);
+    //subscribe to FCM topic
+    _firebaseMessaging.subscribeToTopic(courses[selectedCourse].abbreviation)
   }
 
   @override
