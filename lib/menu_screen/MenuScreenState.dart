@@ -6,7 +6,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vidzemes_augstskola/lecture_graph/lecture_graph/Lecture_graph.dart';
 import 'package:vidzemes_augstskola/webview/WebViewPage.dart';
+import 'package:vidzemes_augstskola/functions/networkListener.dart';
 
+import '../custom_icons.dart';
 import '../main.dart';
 import 'StaggeredGridViewBuilder.dart';
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -17,15 +19,14 @@ class MenuScreenState extends State<MyHomePage> {
   void initState() {
     super.initState();
     firebaseTrigger(context);
+
+    //listen to netwoek changes
+    trackNetworkStatus(context);
   }
 
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   void firebaseTrigger(BuildContext ctx) async {
     _firebaseMessaging.configure(
-    //     print(message['data']['text']);
-    //     print(message['data']['click_action']);
-    // print(message['data']['url']);
-    // print(message['data']['date']);
       onMessage: (message){
         print("onMessage msg: $message");
         showMessage(message);
@@ -63,6 +64,7 @@ class MenuScreenState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       // appBar: AppBar(
       //   title: Text(widget.title),
@@ -83,7 +85,7 @@ class MenuScreenState extends State<MyHomePage> {
               //facebook
               IconButton(
                 icon: Icon(
-                  Icons.info_outline,
+                  CustomIcons.facebook,
                   color: Colors.white,
                 ),
                 onPressed: () {
@@ -93,7 +95,7 @@ class MenuScreenState extends State<MyHomePage> {
               //instagram
               IconButton(
                 icon: Icon(
-                  Icons.info_outline,
+                  CustomIcons.instagram,
                   color: Colors.white,
                 ),
                 onPressed: () {
@@ -104,7 +106,7 @@ class MenuScreenState extends State<MyHomePage> {
               //youtube
               IconButton(
                 icon: Icon(
-                  Icons.info_outline,
+                  CustomIcons.youtube,
                   color: Colors.white,
                 ),
                 onPressed: () {
@@ -133,9 +135,13 @@ class MenuScreenState extends State<MyHomePage> {
                   return new Text('Error: ${snapshot.error}}');
                 } else {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Expanded(
-                        child:
-                            Center(child: const CircularProgressIndicator()));
+                    return Column(
+                      children: [
+                        Expanded(
+                            child:
+                                Center(child: const CircularProgressIndicator())),
+                      ],
+                    );
                   } else {
                     return StaggeredGridViewBuilder(context, snapshot);
                   }

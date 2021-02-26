@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vidzemes_augstskola/functions/networkListener.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends StatefulWidget {
@@ -23,6 +24,9 @@ class _WebVieweState extends State<WebViewPage> {
   @override
   void initState() {
     super.initState();
+    //listen to netwoek changes
+    trackNetworkStatus(context);
+
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 

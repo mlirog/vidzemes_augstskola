@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vidzemes_augstskola/assets/ViAColors.dart';
+import 'package:vidzemes_augstskola/functions/networkListener.dart';
 import 'package:vidzemes_augstskola/lecture_graph/lecture_graph/Lecture_graph.dart';
 import 'package:vidzemes_augstskola/lecture_graph/objects/Course.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,14 +38,17 @@ class CourseSelectionState extends State<CourseSelectionPage>{
         _currentstep == 1)
       openLectureGraphScreen(courses[selectedCourse].abbreviation);
     //subscribe to FCM topic
-    _firebaseMessaging.subscribeToTopic(courses[selectedCourse].abbreviation)
+    _firebaseMessaging.subscribeToTopic(courses[selectedCourse].abbreviation);
   }
 
   @override
   void initState() {
+    super.initState();
+    //listen to netwoek changes
+    trackNetworkStatus(context);
+
     prefs = _checkSavedCourse();
     _future = downloadData();
-    super.initState();
   }
 
   @override
@@ -123,7 +127,7 @@ class CourseSelectionState extends State<CourseSelectionPage>{
                     return Center(child: Text('Please wait its loading...'));
                   } else {
                     if (snapshot.hasError)
-                      return Center(child: Text('Error: ${snapshot.error}'));
+                      return Center(child: Text('Error! Possibly unstable internet connection.'));
                     else
                       return showCoursePicker();
                     // snapshot.data  :- get your object which is pass from your downloadData() function

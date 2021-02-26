@@ -33,7 +33,7 @@ dependencies:
   connectivity: ^2.0.2
   intl: ^0.17.0
   http: ^0.12.2
-  syncfusion_flutter_calendar: ^18.4.43
+  table_calendar: ^2.3.3
   shared_preferences: ^0.5.12
   flutter_local_notifications: ^4.0.1
   url_launcher: ^5.7.10
@@ -61,6 +61,7 @@ flutter:
   assets:
     - assets/menu.jpg
     - assets/welcome.jpg
+    - assets/no_internet.jpg
     - assets/translations/en.json
     - assets/translations/lv.json
 
@@ -75,6 +76,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
+  fonts:
+    - family: Youtube
+      fonts:
+        - asset: assets/fonts/Youtube.ttf
+
   # fonts:
   #   - family: Schyler
   #     fonts:

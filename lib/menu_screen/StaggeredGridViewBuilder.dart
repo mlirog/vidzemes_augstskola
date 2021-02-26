@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:vidzemes_augstskola/functions/hexToColor.dart';
 import 'package:vidzemes_augstskola/lecture_graph/lecture_graph/Lecture_graph.dart';
 import 'package:vidzemes_augstskola/webview/WebViewPage.dart';
 
-bool _isLoading = true;
 
 Widget StaggeredGridViewBuilder(
     BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
