@@ -8,7 +8,6 @@ import 'package:vidzemes_augstskola/functions/hexToColor.dart';
 import 'package:vidzemes_augstskola/lecture_graph/course_selection/CourseSelectionStepper.dart';
 import 'package:vidzemes_augstskola/lecture_graph/objects/Lecture.dart';
 import 'dart:convert';
-import '../../main.dart';
 
 class Lecture_graph extends StatefulWidget {
   Lecture_graph({Key key}) : super(key: key);
@@ -29,9 +28,9 @@ class myLectureGraph extends State<Lecture_graph> with TickerProviderStateMixin 
   bool isLoading = true;
 
   final Map<DateTime, List> _holidays = {
-    DateTime(2021, 1, 1): ['New Year\'s Day'],
-    DateTime(2021, 2, 14): ['Valentine\'s Day'],
-    DateTime(2021, 3, 8): ['Woman\'s Day'],
+    // DateTime(2021, 1, 1): ['New Year\'s Day'],
+    // DateTime(2021, 2, 14): ['Valentine\'s Day'],
+    // DateTime(2021, 3, 8): ['Woman\'s Day'],
   };
 
   Future<Map<DateTime, List>> getLectures(DateTime _selectedDate) async {
@@ -358,8 +357,9 @@ class myLectureGraph extends State<Lecture_graph> with TickerProviderStateMixin 
   }
 
   Widget _buildEventList() {
+
     return ListView(
-      children: _selectedEvents
+      children: _selectedEvents.reversed
           .map((lecture) => Container(
                 decoration: BoxDecoration(
                   border: Border.all(width: 0.1),
